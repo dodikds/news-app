@@ -33,7 +33,19 @@ Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'auth:api'], function () {
         //dashboard
         Route::get('/dashboard', App\Http\Controllers\Api\Admin\DashboardController::class);
+
+
+        // permisions
+        Route::get('/permissions', [\App\Http\Controllers\Api\Admin\PermissionController::class, 'index'])->middleware('permission:permissions.index');
+
+        // all
+        Route::get('/permissions/all', [\App\Http\Controllers\Api\Admin\PermissionController::class, 'all'])->middleware('permission:permissions.index');
+
     });
+
+    //ternyata belum di masukkan di dalam middleware group mas
+    //sudah bisa
+
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
