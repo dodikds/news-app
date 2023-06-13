@@ -38,9 +38,20 @@ Route::prefix('admin')->group(function () {
         // permisions
         Route::get('/permissions', [\App\Http\Controllers\Api\Admin\PermissionController::class, 'index'])->middleware('permission:permissions.index');
 
-        // all
+        // permissions all
         Route::get('/permissions/all', [\App\Http\Controllers\Api\Admin\PermissionController::class, 'all'])->middleware('permission:permissions.index');
 
+        //roles all
+        Route::get('/roles/all', [\App\Http\Controllers\Api\Admin\RoleController::class, 'all'])
+        ->middleware('permission:roles.index');
+
+        //roles
+        Route::apiResource('/roles', App\Http\Controllers\Api\Admin\RoleController::class)
+        ->middleware('permission:roles.index|roles.store|roles.update|roles.delete');
+
+        //users
+        Route::apiResource('/users', App\Http\Controllers\Api\Admin\UserController::class)
+        ->middleware('permission:users.index|users.store|users.update|users.delete');
     });
 
     //ternyata belum di masukkan di dalam middleware group mas
