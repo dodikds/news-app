@@ -17,7 +17,7 @@ const Api = axios.create({
 });
 
 // handle authenticated
-Api.interceptors.response.use(function (response)) {
+Api.interceptors.response.use(function (response) {
 
     // return response
     return response;
@@ -48,6 +48,6 @@ Api.interceptors.response.use(function (response)) {
         // reject promise error
         return Promise.reject(error);
     }
-});
+}));
 
 export default Api

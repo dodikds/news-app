@@ -1,14 +1,17 @@
-// import Toaster
+//import routes
+import Routes from './routes';
+
+//import Toaster
 import { Toaster } from 'react-hot-toast';
 
 function App() {
 
   return (
     <>
-        <Toaster />
+      <Routes />
+      <Toaster />
     </>
   )
-
 }
 
 export default App
