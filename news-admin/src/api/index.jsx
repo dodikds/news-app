@@ -8,6 +8,7 @@ const Api = axios.create({
 
     // set endpoint API
     baseURL: 'https://news-api.deestone.my.id',
+    // baseURL: 'https://news-api.appdev.my.id',
 
     // set header axios
     headers: {
