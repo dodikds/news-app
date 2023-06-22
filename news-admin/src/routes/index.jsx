@@ -10,6 +10,12 @@ const Loader = lazy(() => import('../components/Loader.jsx'));
 //import view Login
 const Login = lazy(() => import('../views/Auth/Login.jsx'));
 
+//import private routes
+import PrivateRoutes from "./privateRoutes";
+
+//import view dashboard
+const Dashboard = lazy(() => import('../views/Dashboard/Index.jsx'));
+
 export default function RoutesIndex() {
 
     return (
@@ -21,6 +27,18 @@ export default function RoutesIndex() {
                 element={
                     <Suspense fallback={<Loader />}>
                         <Login />
+                    </Suspense>
+                }
+            />
+
+            {/* private route "/dashboard" */}
+            <Route
+                path="/dashboard"
+                element={
+                    <Suspense fallback={<Loader />}>
+                        <PrivateRoutes>
+                            <Dashboard />
+                        </PrivateRoutes>
                     </Suspense>
                 }
             />
