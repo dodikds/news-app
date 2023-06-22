@@ -1,5 +1,5 @@
 // import axios
-import Axios from "axios";
+import axios from "axios";
 
 // import js cookie
 import Cookies from "js-cookie";
@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 const Api = axios.create({
 
     // set endpoint API
-    baseUrl: 'https://news-api.deestone.my.id',
+    baseURL: 'https://news-api.deestone.my.id',
 
     // set header axios
     headers: {
