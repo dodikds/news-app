@@ -22,6 +22,9 @@ const PermissionsIndex = lazy(() => import('../views/Permissions/Index.jsx'));
 // import view roles index
 const RolesIndex = lazy(() => import('../views/Roles/Index.jsx'));
 
+// import view role create
+const RoleCreate = lazy(() => import('../views/Roles/Create.jsx'));
+
 export default function RoutesIndex() {
 
     return (
@@ -68,6 +71,18 @@ export default function RoutesIndex() {
                     <Suspense fallback={<Loader />}>
                         <PrivateRoutes>
                             <RolesIndex />
+                        </PrivateRoutes>
+                    </Suspense>
+                }
+            />
+
+            {/** private route "/roles/create" */}
+            <Route 
+                path="/roles/create"
+                element={
+                    <Suspense fallback={<Loader />}>
+                        <PrivateRoutes>
+                            <RoleCreate />
                         </PrivateRoutes>
                     </Suspense>
                 }
