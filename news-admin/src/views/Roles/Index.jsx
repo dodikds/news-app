@@ -19,6 +19,15 @@ import hasAnyPermission from '../../utils/Permissions.jsx';
 //import pagination component
 import Pagination from "../../components/Pagination";
 
+// import react-confirm-alert
+import { confirmAlert } from 'react-confirm-alert';
+
+// import CSS react-confirm-alert
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
+// import toast
+import toast from 'react-hot-toast';
+
 export default function RolesIndex() {
 
     //title page
@@ -89,6 +98,43 @@ export default function RolesIndex() {
 
     }
 
+    // function "deleteRole"
+    const deleteRole = (id) => {
+
+        // show confirm alert
+        confirmAlert({
+            title: 'Are You Sure ?',
+            message: 'want to delete this data ?',
+            buttons: [{
+                    label: 'YES',
+                    onClick: async () => {
+                        
+                        await Api.delete(`/api/admin/roles/${id}`, {
+
+                            // header
+                            headers: {
+                                // header Bearer + Token
+                                Authorization: `Bearer ${token}`,
+                            }
+                        })
+                            .then(response => {
+
+                                // show toast
+                                toast.success(response.data.message, {
+                                    position: "top-right",
+                                    duration: 4000,
+                                });
+                            })
+                    }
+                },
+                {
+                    label: 'NO',
+                    onClick: () => {}
+                }
+            ]
+        });
+    }
+
     return (
         <LayoutDefault>
             <div className="container-fluid mb-5 mt-5">
@@ -152,7 +198,7 @@ export default function RolesIndex() {
                                                                 }
 
                                                                 {hasAnyPermission(['roles.delete']) &&
-                                                                    <button className="btn btn-danger btn-sm"><i className="fa fa-trash"></i></button>
+                                                                    <button onClick={() => deleteRole(role.id)} className="btn btn-danger btn-sm"><i className="fa fa-trash"></i></button>
                                                                 }
 
                                                             </td>
