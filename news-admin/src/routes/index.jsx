@@ -50,6 +50,9 @@ const CategoryEdit = lazy(() => import('../views/Categories/Edit.jsx'));
 //import view posts index
 const PostsIndex = lazy(() => import('../views/Posts/Index.jsx'));
 
+//import view post create
+const PostCreate = lazy(() => import('../views/Posts/Create.jsx'));
+
 export default function RoutesIndex() {
 
     return (
@@ -204,6 +207,18 @@ export default function RoutesIndex() {
                     <Suspense fallback={<Loader />}>
                         <PrivateRoutes>
                             <PostsIndex />
+                        </PrivateRoutes>
+                    </Suspense>
+                }
+            />
+
+            {/* private route "/posts/create" */}
+            <Route
+                path="/posts/create"
+                element={
+                    <Suspense fallback={<Loader />}>
+                        <PrivateRoutes>
+                            <PostCreate />
                         </PrivateRoutes>
                     </Suspense>
                 }
