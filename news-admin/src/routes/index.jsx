@@ -56,6 +56,8 @@ const PostCreate = lazy(() => import('../views/Posts/Create.jsx'));
 //import view post edit
 const PostEdit = lazy(() => import('../views/Posts/Edit.jsx'));
 
+//import view slider index
+const SlidersIndex = lazy(() => import('../views/Sliders/Index.jsx'));
 
 export default function RoutesIndex() {
 
@@ -235,6 +237,18 @@ export default function RoutesIndex() {
                     <Suspense fallback={<Loader />}>
                         <PrivateRoutes>
                             <PostEdit />
+                        </PrivateRoutes>
+                    </Suspense>
+                }
+            />
+
+            {/* private route "/sliders" */}
+            <Route
+                path="/sliders"
+                element={
+                    <Suspense fallback={<Loader />}>
+                        <PrivateRoutes>
+                            <SlidersIndex />
                         </PrivateRoutes>
                     </Suspense>
                 }
