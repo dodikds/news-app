@@ -16,10 +16,13 @@ import hasAnyPermission from '../../utils/Permissions.jsx';
 //import pagination component
 import Pagination from "../../components/Pagination";
 
+//import component slider create
+import SliderCreate from './Create';
+
 export default function SlidersIndex() {
 
     //title page
-    document.title = "Sliders - NewsApp Administartor";
+    document.title = "Sliders - NewsApp Administrator";
 
     //define state "sliders"
     const[sliders, setSliders] = useState([]);
@@ -75,6 +78,13 @@ export default function SlidersIndex() {
     return (
         <LayoutDefault>
             <div className="container-fluid mb-5 mt-5">
+                <div className="row mb-4">
+                    <div className="col-md-12">
+                        {hasAnyPermission(['sliders.create']) &&
+                            <SliderCreate fetchData={fetchData} />
+                        }
+                    </div>
+                </div>
                 <div className="row mt-1">
                     <div className="col-md-12">
                         <div className="card border-0 shadow">
