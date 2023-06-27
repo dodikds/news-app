@@ -19,6 +19,15 @@ import Pagination from "../../components/Pagination";
 //import component slider create
 import SliderCreate from './Create';
 
+//import react-confirm-alert
+import { confirmAlert } from 'react-confirm-alert';
+
+//import CSS react-confirm-alert
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
+//import toast
+import toast from 'react-hot-toast';
+
 export default function SlidersIndex() {
 
     //title page
@@ -75,6 +84,46 @@ export default function SlidersIndex() {
 
     }, []);
 
+    //function "deleteSlider"
+    const deleteSlider = (id) => {
+
+        //show confirm alert
+        confirmAlert({
+            title: 'Are You Sure ?',
+            message: 'want to delete this data ?',
+            buttons: [{
+                    label: 'YES',
+                    onClick: async () => {
+
+                        await Api.delete(`/api/admin/sliders/${id}`, {
+
+                            //header
+                            headers: {
+                                //header Bearer + Token
+                                Authorization: `Bearer ${token}`,
+                            }
+                        })
+                            .then(response => {
+
+                                //show toast
+                                toast.success(response.data.message, {
+                                    position: "top-right",
+                                    duration: 4000,
+                                });
+
+                                //call function "fetchData"
+                                fetchData();
+                            })
+                    }
+                },
+                {
+                    label: 'NO',
+                    onClick: () => {}
+                }
+            ]
+        });
+    }
+
     return (
         <LayoutDefault>
             <div className="container-fluid mb-5 mt-5">
@@ -115,7 +164,7 @@ export default function SlidersIndex() {
                                                             <td className="text-center">
 
                                                                 {hasAnyPermission(['sliders.delete']) &&
-                                                                    <button className="btn btn-danger btn-sm"><i className="fa fa-trash"></i></button>
+                                                                    <button onClick={() => deleteSlider(slider.id)} className="btn btn-danger btn-sm"><i className="fa fa-trash"></i></button>
                                                                 }
 
                                                             </td>
